@@ -1,0 +1,19 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    font-size: 24px;
+}
+
+#view-scores {
+    text-align: left;
+    text-decoration: none;
+}
+
+#time {
+    text-align: right;
+}
+
+.hidden {
+    display: none;
+}

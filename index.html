@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Code Quiz</title>
+    <link rel="stylesheet" href="./assets/css/reset.css"/>
+    <link rel="stylesheet" href="./assets/css/style.css"/>
+</head>
+
+<body>
+    <!--Displays at the top of the page to the left and right-->
+    <header>
+        <h1 id = "view-scores"><a href = "highscores.html">View Highscores</a></h1>
+        <h1 id = "time">Time Left:</h1>
+    </header>
+
+    <main>
+        <!--Text that user first sees upon entering page-->
+        <section id = "intro">
+            <h2>Coding Quiz Challenge</h2>
+            <p>Welcome! You are about to be challenged to answer some code-related questions. Do your best to answer each question within the allotted time. Correct answers will award you with additional time and incorrect answers will decrease the time you have left. Your score will be determined by the time remaining. Good luck!</p>
+            <button class = "start">Start Quiz</button>
+        </section>
+
+        <!--Appears once the quiz has begun and displays questions/answers-->
+        <section id = "questions" class = "hidden">
+            <h2 id = "question-text">Question</h2>
+            <div id = "answers">Answers</div>
+        </section>
+
+        <!--Appears once the quiz is over and allows user to input initials for highscore-->
+        <section id = "end" class = "hidde">
+            <h2>Great effort!</h2>
+            <form>
+                <label>Enter initials:</label>
+                <input type = "text" id ="initials" maxlength ="3"/>
+                <input type = "submit" value = "Submit"/>
+            </form>
+        </section>
+    </main>
+    
+    <script type="text/javascript" src="./assets/js/script.js"></script>
+</body>
+
+</html>
