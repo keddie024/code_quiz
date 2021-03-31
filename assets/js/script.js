@@ -20,6 +20,11 @@ var questionList = [
         options: ["One", "Two", "Three", "Four"],
         answer: "One"
     },
+    {
+        question: "Question1",
+        options: ["One", "Two", "Three", "Four"],
+        answer: "One"
+    },
 ]
 
 var questionCount = 0;
@@ -30,10 +35,26 @@ function startQuiz() {
     intro.setAttribute("class", "hidden");
     questions.removeAttribute("class");
     questionCount = 0;
+    countdown();
     nextQuestion();
 }
 
 startButton.addEventListener("click", startQuiz);
+
+function countdown() {
+    timer.textContent = "Time Left: " + timeLeft;
+  
+    var timeInterval = setInterval(function () {
+      timeLeft--;
+      timer.textContent = "Time Left: " + timeLeft;
+      
+      if (timeLeft === 0) {
+        clearInterval(timeInterval);
+        // END and go to score screen
+      }
+  
+    }, 1000);
+  }
 
 function nextQuestion() {
     var currentQuestion = questionList[questionCount];
@@ -48,7 +69,6 @@ function nextQuestion() {
         optionButton.addEventListener("click", checkAnswer);
         answers.appendChild(optionButton);
     }
-
 }
 
 function checkAnswer() {
@@ -59,14 +79,15 @@ function checkAnswer() {
     if (target == correctAnswer) {
         window.alert("True!");
         console.log("Timer plus");
+        timeLeft += 15;
         
     } else {
         window.alert("False!");
         console.log("Timer minus");
-        
+        timeLeft -= 15;
     }
 
-    for (var i = 0; i <= 3; i++) {
+    for (var i = 0; i < questionList[questionCount].options.length; i++) {
         answers.removeChild(answers.firstChild);
     }
 
