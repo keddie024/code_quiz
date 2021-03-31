@@ -11,7 +11,7 @@
 <body>
     <!--Displays at the top of the page to the left and right-->
     <header>
-        <h1 id = "view-scores"><a href = "highscores.html">View Highscores</a></h1>
+        <h1 id = "view-scores"><a href>View Highscores</a></h1>
         <h1 id = "timer">Time Left:</h1>
     </header>
 
@@ -32,11 +32,18 @@
         <!--Appears once the quiz is over and allows user to input initials for highscore-->
         <section id = "end" class = "hidden">
             <h2>Great effort!</h2>
+            <p id = "score">You scored: 0</p>
             <form>
                 <label>Enter initials:</label>
                 <input type = "text" id ="initials" maxlength ="3"/>
-                <input type = "submit" value = "Submit"/>
+                <button id = "submit-button">Submit</button>
             </form>
+        </section>
+
+        <section id = "high-scores" class = "hidden">
+            <ul id = "score-list">Highscores!</ul>
+            <button id = "go-back">Go Back</button>
+            <button id = "clear">Clear Highscores</button>
         </section>
     </main>
     

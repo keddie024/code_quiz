@@ -18,7 +18,11 @@ header {
     display: none;
 }
 
-/* Answer buttons
-.choice {
-
-} */
+/* Answer buttons */
+button {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    background-color: blue;
+    color: white;
+}
