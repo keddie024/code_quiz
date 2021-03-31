@@ -143,6 +143,7 @@ function submitScore(event) {
 
 function getScores(event) {
     event.preventDefault();
+    clearInterval(timeInterval);
     highScores.removeAttribute("class");
     intro.setAttribute("class", "hidden");
     questions.setAttribute("class", "hidden");
