@@ -10,7 +10,7 @@
 
 <body>
     <!--Displays at the top of the page to the left and right-->
-    <header>
+    <header  id = "page-top" class = "visible">
         <h1 id = "view-scores"><a href>View Highscores</a></h1>
         <h1 id = "timer">Time Left:</h1>
     </header>
@@ -19,7 +19,7 @@
         <!--Text that user first sees upon entering page-->
         <section id = "intro" class = "visible">
             <h2>Coding Quiz Challenge</h2>
-            <p>Welcome! You are about to be challenged to answer some code-related questions. Do your best to answer each question within the allotted time. Correct answers will award you with additional time and incorrect answers will decrease the time you have left. Your score will be determined by the time remaining. Good luck!</p>
+            <p id = "intro-text">Welcome! You are about to be challenged to answer some code-related questions. Do your best to answer each question within the allotted time. Correct answers will award you with additional time and incorrect answers will decrease the time you have left. Your score will be determined by the time remaining. Good luck!</p>
             <button id = "start-button">Start Quiz</button>
         </section>
 
@@ -41,7 +41,8 @@
         </section>
 
         <section id = "high-scores" class = "hidden">
-            <ul id = "score-list">Highscores!</ul>
+            <h2 id = "score-label">Highscores!</h2>
+            <ul id = "score-list"></ul>
             <button id = "go-back">Go Back</button>
             <button id = "clear">Clear Highscores</button>
         </section>
