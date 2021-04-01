@@ -13,6 +13,7 @@ var end = document.querySelector("#end");
 var timeInterval;
 var scoreSheet = [];
 
+// Object that contains list of questions that will be asked, as well as user options and correct answer
 var questionList = [
     {
         question: "What tag would you use to create a hyperlink in HTML?",
@@ -69,6 +70,7 @@ var questionList = [
 var questionCount = 0;
 var timeLeft = questionList.length * 10;
 
+// Hides all page elements not associated with the quiz portion. Resets the time left and current question number, then begins the timer and question functions.
 function startQuiz() {
     var intro = document.querySelector("#intro");
     intro.setAttribute("class", "hidden");
@@ -80,6 +82,7 @@ function startQuiz() {
     nextQuestion();
 }
 
+// Begins the timer. Will move to the endGame function upon time expiring.
 function countdown() {
     timer.textContent = "Time Left: " + timeLeft;
   
@@ -87,13 +90,14 @@ function countdown() {
       timeLeft--;
       timer.textContent = "Time Left: " + timeLeft;
       
-      if (timeLeft <= 0 || questionCount > questionList.length ) {
+      if (timeLeft <= 0) {
         endGame();
       }
   
     }, 1000);
   }
 
+// Obtains the next question in the array and then appends buttons that include options for the user to click.
 function nextQuestion() {
     var currentQuestion = questionList[questionCount];
     var question = document.querySelector("#question-text");
@@ -109,6 +113,8 @@ function nextQuestion() {
     }
 }
 
+// Compares the users choice to the correct answer. Time will be added or subtracted based on answer, and user will be alerted with the result.
+// If no questions are left the endGame function will be called, otherwise nextQuestion will be called again.
 function checkAnswer() {
     var correctAnswer = questionList[questionCount].answer;
     var target = this.textContent;
@@ -124,11 +130,13 @@ function checkAnswer() {
         console.log("Timer minus");
         if (timeLeft <= 10) {
             timeLeft = 0;
+            clearInterval(timeInterval);
         } else {
             timeLeft -= 10;
         }
     }
-
+    
+    // Removes the buttons to prepare for the next question.
     for (var i = 0; i < questionList[questionCount].options.length; i++) {
         answers.removeChild(answers.firstChild);
     }
@@ -142,6 +150,7 @@ function checkAnswer() {
     }
 }
 
+// Adds the user's score to the page and stops the timer. The questions element is hidden and the end element is revealed.
 function endGame() {
     var score = timeLeft;
     var scoreDisplay = document.querySelector("#score");
@@ -154,6 +163,10 @@ function endGame() {
     end.removeAttribute("class");
 }
 
+// Will parse any scores in local storage.
+// If no scores are in local storage, the current score will be pushed into the array.
+// If local storage already contains scores, they will be parsed and then added to the array before the new score is pushed.
+// Any scores in the array are then sorted before being pushed to local storage. The user is then alerted and the page reloads.
 function submitScore(event) {
     event.preventDefault();
     var initials = document.querySelector("#initials");
@@ -178,6 +191,10 @@ function submitScore(event) {
     location.reload();
 }
 
+// Hides all elements other than the high scores section.
+// The timer is halted if the user clicks while already taking the quiz.
+// The scores in local storager are then parsed and a for loop creates list items to append the scores to the page.
+// If no scores exist, the page will tell the user "This is empty!".
 function getScores(event) {
     event.preventDefault();
     clearInterval(timeInterval);
@@ -206,6 +223,7 @@ function getScores(event) {
     } 
 }
 
+// Hides the high scores section and then reveals the header and start page. The entire page is then reloaded.
 function goBack() {
     highScores.setAttribute("class", "hidden");
     intro.removeAttribute("class");
@@ -214,6 +232,7 @@ function goBack() {
     location.reload();
 }
 
+// Clears all items within local storage, removes all scores listed in the high scores section, then empties the array of scores stored in the scoreSheet variable.
 function clearScores() {
     localStorage.clear();
     
@@ -224,6 +243,7 @@ function clearScores() {
     scoreSheet = [];
 }
 
+// Triggers added to buttons found on the page that call separate functions.
 viewScores.addEventListener("click", getScores);
 submitButton.addEventListener("click", submitScore);
 startButton.addEventListener("click", startQuiz);
